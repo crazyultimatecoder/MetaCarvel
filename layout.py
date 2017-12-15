@@ -1,8 +1,6 @@
 import networkx as nx
 from collections import deque
-import sys
 #from networkx.drawing.nx_agraph import write_dot
-import operator
 import argparse
 
 
@@ -337,9 +335,7 @@ def main():
 			pairmap[key] = attrs[2:]
 			pair_list.append(key)
 
-	validated = {}
-	contig2id = {}
-	cnt = 0
+
 	#write_dot(G,'graph.dot')
 
 	# for key in pairmap:
@@ -353,7 +349,6 @@ def main():
 	valid_sink = {}	#valid sink nodes
 	valid_bubble_id = 1 #valid bubble number, to be used in the new graph
 	members = {} #members of all the bubbles
-	component_id_counter = 1
 	valid_bubbles = {} #store the subgraphs for the bubbles
 	bubble_id_to_source = {} #bubble to its source
 	bubble_id_to_sink = {} #bubble to its sink
@@ -799,7 +794,6 @@ def main():
 							alt_path = []
 							curr_path = alt_paths[i]
 							for each in curr_path:
-								o_node = G.node
 								if G.node[each]['orientation'] == 'FOW':
 									alt_path.append(each+'$B')
 									alt_path.append(each+'$E')
@@ -826,7 +820,6 @@ def main():
 		scaff_len = 0
 		begin = 1
 		local_comp = 0
-		curr_contig = ''
 		for i in xrange(0,len(scaffold) - 1,2):
 			line += 'scaffold_'+str(scaffold_id)
 			line += '\t'

@@ -25,11 +25,6 @@ def main():
     parser.add_argument("-v",'--visualization',help="To generate .db file for AsmViz visualization program",default=False)
 
     args = parser.parse_args()
-    try:
-      import networkx
-    except ImportError:
-      raise ImportError('Looks like you do not have networkx. Please rerun with networkx module installed.')
-      sys.exit(1)
     if not cmd_exists('samtools'):
       print >> sys.stderr, time.strftime("%c")+': Samtools does not exist in PATH. Terminating....\n'
       sys.exit(1)
@@ -71,8 +66,6 @@ def main():
 
     print >> sys.stderr, time.strftime("%c")+':Finished conversion'
 
-    final_assembly = args.assembly
-    final_mapping = args.mapping
 
     print >> sys.stderr, time.strftime("%c") + ':Started generating links between contigs'
     if os.path.exists(args.dir+'/contig_links') == False:

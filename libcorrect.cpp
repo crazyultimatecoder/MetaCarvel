@@ -44,7 +44,7 @@ char* getCharExpr(string s)
         return a;
 }
 
-void parse_bed(string path)
+void parse_bed(string& path)
 {
 	ifstream bedfile(getCharExpr(path));
 	string line;
@@ -104,7 +104,7 @@ map<string, int> contig2bases;
 map<string, int> contig2reads;
 
 
-void get_contig_length(string file)
+void get_contig_length(string &file)
 {
 	ifstream lenfile(getCharExpr(file));
 	string line;
@@ -158,7 +158,7 @@ int get_insert_size(int start1, int end1, int start2, int end2)
 	}
 }
 
-double estimate_distance(double mean, int start1, int end1, int start2, int end2, int ctg1_length, int ctg2_length, string orientation)
+double estimate_distance(double mean, int start1, int end1, int start2, int end2, int ctg1_length, int ctg2_length, string& orientation)
 {
 	int read1_length = end1 - start1 + 1;
 	int read2_length = end2 - start2 + 1;
